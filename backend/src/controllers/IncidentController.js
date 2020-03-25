@@ -19,13 +19,13 @@ module.exports = {
     },
 
     async create(request, response){
-        const {title, name, description, value} = request.body;
-        console.log({title, name, description, value});
+        const {title, description, value} = request.body;
+        console.log({title, description, value});
         const ong_id = request.headers.authorization;
 
         //console.log(request.query); //para query params: endereco?pag=1
 
-        const result = await connection('incidents').insert({title, name, description, value, ong_id});
+        const result = await connection('incidents').insert({title, description, value, ong_id});
 
         return response.json(result[0]);
     },
