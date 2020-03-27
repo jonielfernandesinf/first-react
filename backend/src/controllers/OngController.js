@@ -1,4 +1,5 @@
-const crytpo = require('crypto');
+const generateUniqueId = require('../utils/generateUniqueId');
+
 const connection = require('../database/connection');
 
 module.exports = {
@@ -11,10 +12,7 @@ module.exports = {
     async create(request, response){
         const {name, email, whatsapp, city, uf} = request.body;
 
-        const id = crytpo.randomBytes(4).toString('HEX');
-
-        //console.log(request.query); //para query params: endereco?pag=1
-        console.log(id); //para route params: endereco/users/1
+        const id = generateUniqueId();
 
         await connection('ongs').insert({id, name, email, whatsapp, city, uf});
 
